@@ -1,0 +1,11 @@
+{
+	"id": "url-recognizer-plugin",
+	"name": "URL Recognizer Plugin",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Creates links from pieces of text that match configurable patterns.",
+	"author": "Laurent Delaigue",
+	"authorUrl": "https://github.com/ldelaigue",
+	"fundingUrl": "https://github.com/ldelaigue",
+	"isDesktopOnly": false
+}
