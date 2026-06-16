@@ -24,7 +24,7 @@ const DEFAULT_SETTINGS: UrlRecognizerSettings = {
 	mappings: [
 		{
 			regex: "[A-Z]+\\-[1-9][0-9]*",
-			url: "https://support.jira.obeo.fr/browse/$&",
+			url: "https://support.jira.example.com/browse/$&",
 		},
 	],
 };
