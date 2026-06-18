@@ -33,21 +33,20 @@ const DEFAULT_SETTINGS: UrlRecognizerSettings = {
 
 export default class UrlRecognizerPlugin extends Plugin {
 	settings: UrlRecognizerSettings;
+	this.addRibbonIcon('folder', 'Convert All doc', (_evt: MouseEvent) => {
+		convertAllDoc(Editor)
+	});
 
     convertAllDoc(editor: Editor) {
 		const nbLines = editor.lineCount();
 		var line = 0
 		for (line = 0; line < nbLines; line++); {
-			var content_line = editor.getLine(line)
-			changeLine(content_line, regex, url)
+			changeLine(line, regex, url)
 		}
 	}
 
-	changeLine(line : String, regex: RegExp, url :) {
-		// regex = RegExp
-		const pos = line.search(regex)
-		var test = (line.includes(regex))
-		}
+	changeLine(line : String, regex: RegExp, url: url) {
+		editor.getLine(line).replaceAll(regex, url)
 	}
 
 	convertSelection(editor: Editor) {
