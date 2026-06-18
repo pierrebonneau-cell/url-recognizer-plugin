@@ -34,11 +34,20 @@ const DEFAULT_SETTINGS: UrlRecognizerSettings = {
 export default class UrlRecognizerPlugin extends Plugin {
 	settings: UrlRecognizerSettings;
 
-    convertAllDoc(editor: Editor) {
-		const content = editor.getValue();
-		const updated = content.replaceAll(RegExp, url);
-		editor.setValue(updated);
-		
+	
+	convertAllDoc(editor: Editor) {
+		let content = editor.getValue();
+
+		for (const mapping of this.settings.mappings) {
+			const regex = new RegExp(mapping.regex, "g");
+
+			content = content.replace(
+				regex,
+				match => `[${match}](${mapping.url.replace("$&", match)})`
+			);
+		}
+
+		editor.setValue(content);
 	}
 
 	convertSelection(editor: Editor) {
