@@ -5,17 +5,25 @@ This is a plugin for Obsidian (https://obsidian.md).
 This project uses TypeScript to provide type checking and documentation.
 The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
 
-This plugin facilitates the creation of URLs from configurable textual patterns. With it, you can set a regular expression to replace the text that match by another thing. 
+This plugin facilitates the creation of URLs from configurable textual patterns.
+It can detect text  fragments in your Obsidian notes that matches a given regular expression and transform these fragments into navigable links that point to a URL computed from the fragment matched.
 
 ## Usage
 
-The default shortcut is Ctrl+Space, but you can change it if you want .
-
-It must be invoked with the whole text to replace the selected text (if it matches the regular expression) by the URL.
+The default shortcut is Ctrl+Space, but it can be changed in the Obsidian settings.
+It must be invoked with the whole text to replace the selected text by the URL (if it matches the regular expression).
 
 ## Settings
 
-You can set other regular expression for different uses, but you also can change and remove previous one.
-You also can change the URL it brings you to.
+By default, there is one sample setting defined with a single mapping that can be configured.
+This mapping is just provided as an example, don't expect it to be useful as is.
 
-![This picture show the differents settings you can change, but also differnent patterns you can create on your own](image.png)
+![This picture show the settings interface of the URL recognizer plugin.](image-1.png)
+
+Additional mappings can be added if necessary (by clicking on 'Add mapping').
+
+![This picture shows the pop-up that appears when you click on "add mapping"](image-2.png)
+
+The first mapping that matches the selected text will be applied to produce a text+link.
+
+

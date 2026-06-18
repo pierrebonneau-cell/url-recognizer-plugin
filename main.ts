@@ -26,7 +26,7 @@ const DEFAULT_SETTINGS: UrlRecognizerSettings = {
 	mappings: [
 		{
 			regex: "[A-Z]+\\-[1-9][0-9]*",
-			url: "https://support.jira.example.com/browse/$&",
+			url: "https://jira.example.com/browse/$&",
 		},
 	],
 };
