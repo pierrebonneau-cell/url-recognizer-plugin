@@ -1,8 +1,12 @@
 {
   "mappings": [
     {
-      "regex": "[A-Z]+\\-[1-9][0-9]*",
-      "url": "https://jira.example.com/browse/$&"
+      "regex": "[A-Z]+[a-z]+\\-[8-9]",
+      "url": "wikipedia.ht$&"
+    },
+    {
+      "regex": "[A-Z]+\\-[1-9]+[0-9]*",
+      "url": "https://example.com/$&"
     }
   ]
 }

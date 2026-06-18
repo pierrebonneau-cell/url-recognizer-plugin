@@ -41,10 +41,7 @@ export default class UrlRecognizerPlugin extends Plugin {
 		for (const mapping of this.settings.mappings) {
 			const regex = new RegExp(mapping.regex, "g");
 
-			content = content.replace(
-				regex,
-				match => `[${match}](${mapping.url.replace("$&", match)})`
-			);
+			content = content.replace( regex, match => `[${match}](${mapping.url.replace("$&", match)})` );
 		}
 
 		editor.setValue(content);
