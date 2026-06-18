@@ -33,7 +33,7 @@ const DEFAULT_SETTINGS: UrlRecognizerSettings = {
 
 export default class UrlRecognizerPlugin extends Plugin {
 	settings: UrlRecognizerSettings;
-	this.addRibbonIcon('folder', 'Convert All doc', (_evt: MouseEvent) => {
+	this;addRibbonIcon('dice', 'Convert All doc', (_evt: MouseEvent) => {
 		convertAllDoc(Editor)
 	});
 
