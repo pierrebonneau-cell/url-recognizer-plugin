@@ -35,16 +35,10 @@ export default class UrlRecognizerPlugin extends Plugin {
 	settings: UrlRecognizerSettings;
 
     convertAllDoc(editor: Editor) {
-		const nbLines = editor.lineCount();
-		var line = 0
-		for (let line = 0; line < nbLines; line++) {
-			this.changeLine(line, regex, url)
-		}
-	}
-
-	changeLine(Editor : editor, line : number, regex: RegExp, url: string) {
-		const modified = editor.getLine(line).replaceAll(regex, url)
-		editor.replaceRange(modified, {line : line , ch : 0}, {line : line + 1, ch : 0})
+		const content = editor.getValue();
+		const updated = content.replaceAll(RegExp, url);
+		editor.setValue(updated);
+		
 	}
 
 	convertSelection(editor: Editor) {
