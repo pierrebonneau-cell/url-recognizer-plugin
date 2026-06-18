@@ -33,20 +33,18 @@ const DEFAULT_SETTINGS: UrlRecognizerSettings = {
 
 export default class UrlRecognizerPlugin extends Plugin {
 	settings: UrlRecognizerSettings;
-	this;addRibbonIcon('dice', 'Convert All doc', (_evt: MouseEvent) => {
-		convertAllDoc(Editor)
-	});
 
     convertAllDoc(editor: Editor) {
 		const nbLines = editor.lineCount();
 		var line = 0
-		for (line = 0; line < nbLines; line++); {
-			changeLine(line, regex, url)
+		for (let line = 0; line < nbLines; line++) {
+			this.changeLine(line, regex, url)
 		}
 	}
 
-	changeLine(line : String, regex: RegExp, url: url) {
-		editor.getLine(line).replaceAll(regex, url)
+	changeLine(Editor : editor, line : number, regex: RegExp, url: string) {
+		const modified = editor.getLine(line).replaceAll(regex, url)
+		editor.replaceRange(modified, {line : line , ch : 0}, {line : line + 1, ch : 0})
 	}
 
 	convertSelection(editor: Editor) {
@@ -81,6 +79,13 @@ export default class UrlRecognizerPlugin extends Plugin {
 
 	async onload() {
 		await this.loadSettings();
+		this.addCommand({
+			id: 'Change-all',
+			name: 'Change all',
+			editorCallback: (editor : Editor) => {
+				this.convertAllDoc(editor)
+			},
+		});
 
 		// This adds an editor command that can perform some operation on the current editor instance
 		this.addCommand({
