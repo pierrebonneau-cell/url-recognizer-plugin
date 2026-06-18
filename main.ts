@@ -1,9 +1,11 @@
+import { SelectionRange } from "@codemirror/state";
 import {
 	App,
 	Editor,
 	MarkdownView,
 	Modal,
 	Notice,
+	NumberValue,
 	Plugin,
 	PluginSettingTab,
 	Setting,
@@ -31,6 +33,22 @@ const DEFAULT_SETTINGS: UrlRecognizerSettings = {
 
 export default class UrlRecognizerPlugin extends Plugin {
 	settings: UrlRecognizerSettings;
+
+    convertAllDoc(editor: Editor) {
+		const nbLines = editor.lineCount();
+		var line = 0
+		for (line = 0; line < nbLines; line++); {
+			var content_line = editor.getLine(line)
+			changeLine(content_line, regex, url)
+		}
+	}
+
+	changeLine(line : String, regex: RegExp, url :) {
+		// regex = RegExp
+		const pos = line.search(regex)
+		var test = (line.includes(regex))
+		}
+	}
 
 	convertSelection(editor: Editor) {
 		const sel = editor.getSelection();
