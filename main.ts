@@ -1,9 +1,11 @@
+import { SelectionRange } from "@codemirror/state";
 import {
 	App,
 	Editor,
 	MarkdownView,
 	Modal,
 	Notice,
+	NumberValue,
 	Plugin,
 	PluginSettingTab,
 	Setting,
@@ -31,6 +33,19 @@ const DEFAULT_SETTINGS: UrlRecognizerSettings = {
 
 export default class UrlRecognizerPlugin extends Plugin {
 	settings: UrlRecognizerSettings;
+
+	
+	convertAllDoc(editor: Editor) {
+		let content = editor.getValue();
+
+		for (const mapping of this.settings.mappings) {
+			const regex = new RegExp(mapping.regex, "g");
+
+			content = content.replace( regex, match => `[${match}](${mapping.url.replace("$&", match)})` );
+		}
+
+		editor.setValue(content);
+	}
 
 	convertSelection(editor: Editor) {
 		const sel = editor.getSelection();
@@ -64,6 +79,13 @@ export default class UrlRecognizerPlugin extends Plugin {
 
 	async onload() {
 		await this.loadSettings();
+		this.addCommand({
+			id: 'Change-all',
+			name: 'Change all',
+			editorCallback: (editor : Editor) => {
+				this.convertAllDoc(editor)
+			},
+		});
 
 		// This adds an editor command that can perform some operation on the current editor instance
 		this.addCommand({
